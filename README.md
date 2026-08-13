@@ -58,3 +58,12 @@ ROLES
 ├── pyproject.toml
 ├── .env.example
 └── README.md
+
+
+Terminal 1
+cst/
+└── uvicorn app.main:app --reload
+
+Terminal 2
+cst/frontend/
+└── npm run dev
