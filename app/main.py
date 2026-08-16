@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.core.config import get_settings
 # from app.core.config import settings
 # from app.core.db import check_database_connection
 # from sqlalchemy.exc import SQLAlchemyError
 
+settings = get_settings()
 app = FastAPI(
     title="Customer Support System",
     description=(
