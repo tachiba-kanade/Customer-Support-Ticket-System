@@ -1,9 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import get_settings
-# from app.core.config import settings
-# from app.core.db import check_database_connection
-# from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import text
+
+from app.core.config import get_settings
+from app.db.session import engine
+
 
 settings = get_settings()
 app = FastAPI(
@@ -37,8 +40,17 @@ def root():
 
 @app.get("/health")
 def health():
+    database_status = "connected"
+
+    try: 
+        with engine.connect() as connection:
+            connection.execute(text("SELECT 1"))
+    except SQLAlchemyError:
+        database_status = "disconnected"
     return {
         "status": "Health is up and running",
+        "environment": settings.environment,
+        "database": database_status,
     }
 
 

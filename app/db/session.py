@@ -41,5 +41,4 @@ def check_db_connect():
 # engine -->	Manages PostgreSQL connections
 # SessionLocal	--> Creates database sessions
 # get_db()	--> Provides and closes a session for an API request
-# check_database_connection()	--> Runs SELECT 1 to test PostgreSQL
-
+# check_database_connection()--> Runs SELECT 1 to test PostgreSQL
